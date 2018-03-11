@@ -1,29 +1,25 @@
 
 const https = require('https');
-const { URL } = require('url');
 const QueryString = require('querystring');
 
-const API_URL = 'https://api.justwatch.com';
-const APIS_URL = 'https://apis.justwatch.com';
+const API_DOMAIN = 'api.justwatch.com';
 
 class JustWatch
 {
-	constructor(locale)
+	constructor(locale='en_US')
 	{
 		this._locale = locale;
 	}
 
-	request(method, url, params)
+	request(method, endpoint, params)
 	{
 		return new Promise((resolve, reject) => {
 			params = Object.assign({}, params);
 			// build request data
-			url = new URL(url);
 			var reqData = {
-				protocol: url.protocol,
-				hostname: url.hostname,
-				port: url.port,
-				path: url.pathname,
+				protocol: 'https:',
+				hostname: API_DOMAIN,
+				path: endpoint,
 				method: method,
 				headers: {}
 			};
@@ -139,7 +135,27 @@ class JustWatch
 			}
 		}
 		// send request
-		return await this.request('POST', API_URL+'/titles/'+encodeURIComponent(this._locale)+'/popular', params);
+		var locale = encodeURIComponent(this._locale);
+		return await this.request('POST', '/titles/'+locale+'/popular', params);
+	}
+
+	async getProviders()
+	{
+		var locale = encodeURIComponent(this._locale);
+		return await this.request('GET', '/providers/locale/'+locale);
+	}
+
+	async getGenres()
+	{
+		var locale = encodeURIComponent(this._locale);
+		return await this.request('GET', '/genres/locale/'+locale);
+	}
+
+	async getNewestEpisodes(show_id)
+	{
+		show_id = encodeURIComponent(show_id);
+		var locale = encodeURIComponent(this._locale);
+		return await this.request('GET', '/titles/show/'+show_id+'/locale/'+locale+'/newest_episodes');
 	}
 }
 
