@@ -6,9 +6,9 @@ const API_DOMAIN = 'api.justwatch.com';
 
 class JustWatch
 {
-	constructor(locale='en_US')
+	constructor(options)
 	{
-		this._locale = locale;
+		this._options = Object.assign({locale:'en_US'}, options);
 	}
 
 	request(method, endpoint, params)
@@ -135,26 +135,26 @@ class JustWatch
 			}
 		}
 		// send request
-		var locale = encodeURIComponent(this._locale);
+		var locale = encodeURIComponent(this._options.locale);
 		return await this.request('POST', '/titles/'+locale+'/popular', params);
 	}
 
 	async getProviders()
 	{
-		var locale = encodeURIComponent(this._locale);
+		var locale = encodeURIComponent(this._options.locale);
 		return await this.request('GET', '/providers/locale/'+locale);
 	}
 
 	async getGenres()
 	{
-		var locale = encodeURIComponent(this._locale);
+		var locale = encodeURIComponent(this._options.locale);
 		return await this.request('GET', '/genres/locale/'+locale);
 	}
 
 	async getEpisodes(show_id)
 	{
 		show_id = encodeURIComponent(show_id);
-		var locale = encodeURIComponent(this._locale);
+		var locale = encodeURIComponent(this._options.locale);
 		return await this.request('GET', '/titles/show/'+show_id+'/locale/'+locale+'/newest_episodes');
 	}
 
@@ -162,14 +162,14 @@ class JustWatch
 	{
 		title_id = encodeURIComponent(title_id);
 		content_type = encodeURIComponent(content_type);
-		var locale = encodeURIComponent(this._locale);
+		var locale = encodeURIComponent(this._options.locale);
 		return await this.request('GET', '/titles/'+content_type+'/'+title_id+'/locale/'+locale);
 	}
 
 	async getPerson(person_id)
 	{
 		person_id = encodeURIComponent(person_id);
-		var locale = encodeURIComponent(this._locale);
+		var locale = encodeURIComponent(this._options.locale);
 		return await this.request('GET', '/titles/person/'+person_id+'/locale/'+locale);
 	}
 }

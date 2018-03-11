@@ -9,7 +9,7 @@ function print_result(name, result)
 }
 
 (async function(){
-	var justwatch = new JustWatch('en_US');
+	var justwatch = new JustWatch();
 
 	var searchResult = await justwatch.search({query: 'always sunny'});
 	print_result("search", searchResult);
