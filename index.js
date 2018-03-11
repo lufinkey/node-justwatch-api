@@ -151,11 +151,26 @@ class JustWatch
 		return await this.request('GET', '/genres/locale/'+locale);
 	}
 
-	async getNewestEpisodes(show_id)
+	async getEpisodes(show_id)
 	{
 		show_id = encodeURIComponent(show_id);
 		var locale = encodeURIComponent(this._locale);
 		return await this.request('GET', '/titles/show/'+show_id+'/locale/'+locale+'/newest_episodes');
+	}
+
+	async getTitle(content_type, title_id)
+	{
+		title_id = encodeURIComponent(title_id);
+		content_type = encodeURIComponent(content_type);
+		var locale = encodeURIComponent(this._locale);
+		return await this.request('GET', '/titles/'+content_type+'/'+title_id+'/locale/'+locale);
+	}
+
+	async getPerson(person_id)
+	{
+		person_id = encodeURIComponent(person_id);
+		var locale = encodeURIComponent(this._locale);
+		return await this.request('GET', '/titles/person/'+person_id+'/locale/'+locale);
 	}
 }
 

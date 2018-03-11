@@ -14,6 +14,6 @@ function print_result(name, result)
 	var searchResult = await justwatch.search({query: 'always sunny'});
 	print_result("search", searchResult);
 
-	var episodes = await justwatch.getNewestEpisodes(searchResult.items[0].id);
+	var episodes = await justwatch.getEpisodes(searchResult.items[0].id);
 	print_result("episodes", episodes);
 })();
