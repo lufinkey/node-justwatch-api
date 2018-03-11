@@ -1,11 +1,11 @@
 {
   "name": "justwatch-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "access the justwatch.com API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "lufinkey",
   "license": "ISC"
 }
