@@ -1,6 +1,6 @@
 {
   "name": "justwatch-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "access the justwatch.com API",
   "main": "index.js",
   "scripts": {
