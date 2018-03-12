@@ -2,6 +2,12 @@
 
 The justwatch.com API for node js.
 
+## Install
+
+```bash
+npm install --save justwatch-api
+```
+
 ## API Reference
 
 ```javascript
