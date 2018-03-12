@@ -20,6 +20,7 @@ const JustWatch = require('justwatch-api');
 - `method` [\<string>] The HTTP method for the request
 - `endpoint` [\<string>] The API endpoint
 - `params` [\<Object>] Parameters to send with the request
+- Returns: [\<Promise>] A promise that resolves to the response
 
 Send a general request to the JustWatch API.
 
@@ -27,6 +28,7 @@ Send a general request to the JustWatch API.
 
 - `options` [\<Object>]
 	- `query` [\<string>] the term to search for
+- Returns: [\<Promise>] A promise that resolves to the response
 
 Search for a title.
 
@@ -41,6 +43,7 @@ Get a list of available genres.
 #### jw.getEpisodes(show_id)
 
 - `show_id` [\<integer>] The ID of the TV show
+- Returns: [\<Promise>] A promise that resolves to the response
 
 Get a list of episodes for a given TV show
 
@@ -48,10 +51,12 @@ Get a list of episodes for a given TV show
 
 - `content_type` [\<string>] `movie` or `show`
 - `title_id` [\<integer>] The ID of the title to get
+- Returns: [\<Promise>] A promise that resolves to the response
 
 #### jw.getPerson(person_id)
 
 - `person_id` [\<integer>] the ID of the person to get
+- Returns: [\<Promise>] A promise that resolves to the response
 
 Get a person by their ID.
 
