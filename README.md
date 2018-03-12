@@ -59,6 +59,8 @@ Get a list of episodes for a given TV show
 - `title_id` [\<integer>] The ID of the title to get
 - Returns: [\<Promise>] A promise that resolves to the response
 
+Gets a specified title
+
 #### jw.getPerson(person_id)
 
 - `person_id` [\<integer>] the ID of the person to get
