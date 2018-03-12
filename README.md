@@ -40,9 +40,13 @@ Search for a title.
 
 #### jw.getProviders()
 
+- Returns: [\<Promise>] A promise that resolves to the response
+
 Get a list of available providers.
 
 #### jw.getGenres()
+
+- Returns: [\<Promise>] A promise that resolves to the response
 
 Get a list of available genres.
 
