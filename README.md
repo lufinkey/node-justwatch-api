@@ -19,7 +19,7 @@ const JustWatch = require('justwatch-api');
 
 - `method` [\<string>] The HTTP method for the request
 - `endpoint` [\<string>] The API endpoint
-- `params` [<Object>] Parameters to send with the request
+- `params` [\<Object>] Parameters to send with the request
 
 Send a general request to the JustWatch API.
 
