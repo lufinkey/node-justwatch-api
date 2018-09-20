@@ -50,12 +50,19 @@ Get a list of available providers.
 
 Get a list of available genres.
 
+#### jw.getSeasons(season_id)
+
+- `season_id` [\<integer>] The ID of the Season. Can be obtaines from the getTitle('show', {ID of the TV show})
+- Returns: [\<Promise>] A promise that resolves to the response
+
+Get a list of season details and lists all episodes for a given TV show's season
+
 #### jw.getEpisodes(show_id)
 
 - `show_id` [\<integer>] The ID of the TV show
 - Returns: [\<Promise>] A promise that resolves to the response
 
-Get a list of episodes for a given TV show
+Get a list of episodes for a given TV show. For a complete list of episodes for a season, use getSeasons above.
 
 #### jw.getTitle(content_type, title_id)
 

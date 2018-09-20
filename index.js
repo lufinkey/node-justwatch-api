@@ -151,6 +151,13 @@ class JustWatch
 		return await this.request('GET', '/genres/locale/'+locale);
 	}
 
+	async getSeason(season_id)
+	{
+		season_id = encodeURIComponent(season_id);
+		var locale = encodeURIComponent(this._options.locale);
+		return await this.request('GET', '/titles/show_season/' + season_id + '/locale/' + locale);
+	}
+
 	async getEpisodes(show_id)
 	{
 		show_id = encodeURIComponent(show_id);
