@@ -19,7 +19,7 @@ class JustWatch
 			var reqData = {
 				protocol: 'https:',
 				hostname: API_DOMAIN,
-				path: endpoint,
+				path: '/content' + endpoint,
 				method: method,
 				headers: {}
 			};
