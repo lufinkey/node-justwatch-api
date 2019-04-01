@@ -2,7 +2,7 @@
 const https = require('https');
 const QueryString = require('querystring');
 
-const API_DOMAIN = 'api.justwatch.com';
+const API_DOMAIN = 'apis.justwatch.com';
 
 class JustWatch
 {
