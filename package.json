@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/lufinkey/node-justwatch-api"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "access the justwatch.com API",
   "main": "index.js",
   "scripts": {
