@@ -1,8 +1,7 @@
 
 const JustWatch = require('./');
 
-function print_result(name, result)
-{
+function print_result(name, result) {
 	console.log(name+":");
 	console.log(JSON.stringify(result, null, 4));
 	console.log("\n\n\n\n");
