@@ -57,9 +57,10 @@ Get a list of available genres.
 
 Get a list of season details and lists all episodes for a given TV show's season
 
-#### jw.getEpisodes(show_id)
+#### jw.getEpisodes(show_id, page)
 
 - `show_id` [\<integer>] The ID of the TV show
+- `page` [\<integer>] The page number, optional
 - Returns: [\<Promise>] A promise that resolves to the response
 
 Get a list of episodes for a given TV show. For a complete list of episodes for a season, use getSeasons above.
