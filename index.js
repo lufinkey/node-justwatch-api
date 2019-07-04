@@ -136,10 +136,11 @@ class JustWatch {
 		return await this.request('GET', '/titles/show_season/' + season_id + '/locale/' + locale);
 	}
 
-	async getEpisodes(show_id) {
+	async getEpisodes(show_id, page) {
 		show_id = encodeURIComponent(show_id);
 		const locale = encodeURIComponent(this._options.locale);
-		return await this.request('GET', '/titles/show/'+show_id+'/locale/'+locale+'/newest_episodes');
+		const query = page && !isNaN(page) ? ('?page=' + page) : '';
+		return await this.request('GET', '/titles/show/'+show_id+'/locale/'+locale+'/newest_episodes' + query);
 	}
 
 	async getTitle(content_type, title_id) {
