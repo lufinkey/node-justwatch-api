@@ -1,5 +1,5 @@
 
-const https = require('https');
+const needle = require('needle');
 const QueryString = require('querystring');
 
 const API_DOMAIN = 'apis.justwatch.com';
@@ -13,70 +13,41 @@ class JustWatch {
 		return new Promise((resolve, reject) => {
 			params = Object.assign({}, params);
 			// build request data
-			const reqData = {
-				protocol: 'https:',
-				hostname: API_DOMAIN,
-				path: '/content' + endpoint,
-				method: method,
-				headers: {}
-			};
+			const url = 'https://' + API_DOMAIN + '/content' + endpoint
+			const opts = { headers: {} }
+
+			if (this._options.proxy)
+				opts.proxy = this._options.proxy;
+
+			if (this._options.proxyType)
+				opts.headers['proxy-type'] = this._options.proxyType;
+
 			let body = null;
 			// add query string if necessary
 			if(method==='GET') {
 				if(Object.keys(params) > 0) {
-					reqData.path = reqData.path+'?'+QueryString.stringify(params);
+					url += '?'+QueryString.stringify(params);
 				}
 			}
 			else {
 				body = JSON.stringify(params);
-				reqData.headers['Content-Type'] = 'application/json';
+				opts.headers['Content-Type'] = 'application/json';
 			}
 
 			// send request
-			const req = https.request(reqData, (res) => {
-				// build response
-				let buffers = [];
-				res.on('data', (chunk) => {
-					buffers.push(chunk);
-				});
-
-				res.on('end', () => {
-					// check if response 
-					let output = null;
-					try {
-						output = Buffer.concat(buffers);
-						output = output.toString();
-						output = JSON.parse(output);
-					}
-					catch(error) {
-						if(res.statusCode !== 200) {
-							reject(new Error("request failed with status "+res.statusCode+": "+res.statusMessage));
-						}
-						else {
-							reject(error);
-						}
-						return;
-					}
-					
-					if(output.error) {
-						reject(new Error(output.error));
-					}
-					else {
-						resolve(output);
-					}
-				});
-			});
-
-			// handle error
-			req.on('error', (error) => {
-				reject(error);
-			});
-
-			// send
-			if(method !== 'GET' && body) {
-				req.write(body);
+			function callback(err, resp, body) {
+				if (err || !body)
+					reject(err || Error("request failed with status "+resp.statusCode+": "+resp.statusMessage))
+				else if (body.error)
+					reject(Error(body.error))
+				else
+					resolve(body)
 			}
-			req.end();
+
+			if (method == 'POST')
+				needle.post(url, body, opts, callback)
+			else
+				needle[method.toLowerCase()](url, opts, callback)
 		});
 	}
 
